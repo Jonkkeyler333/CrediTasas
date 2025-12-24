@@ -18,19 +18,19 @@ logging.basicConfig(
 print(config.socrata.URL)
 
 def run_etl():
-    # logging.info("ETL process started")
-    # logging.info("Starting Extraction Phase")
-    # extractor = ETLExtractor(source=config.socrata.URL)
-    # data_dir = config.DATA_DIR / "raw"
-    # os.makedirs(data_dir, exist_ok=True)
-    # extractor.extract_all(api_token=config.socrata.APP_TOKEN, path=str(data_dir))
-    # logging.info("Extraction Phase completed")
-    # logging.info("Starting Transformation Phase")
-    # transformer = ETLTransformer()
+    logging.info("ETL process started")
+    logging.info("Starting Extraction Phase")
+    extractor = ETLExtractor(source=config.socrata.URL)
+    data_dir = config.DATA_DIR / "raw"
+    os.makedirs(data_dir, exist_ok=True)
+    extractor.extract_all(api_token=config.socrata.APP_TOKEN, path=str(data_dir))
+    logging.info("Extraction Phase completed")
+    logging.info("Starting Transformation Phase")
+    transformer = ETLTransformer()
     clean_data_dir = config.DATA_DIR / "clean"
-    # os.makedirs(clean_data_dir, exist_ok=True)
-    # transformer.transform_all(raw_data_dir=str(data_dir), output_dir=str(clean_data_dir))
-    # logging.info("Transformation Phase completed")
+    os.makedirs(clean_data_dir, exist_ok=True)
+    transformer.transform_all(raw_data_dir=str(data_dir), output_dir=str(clean_data_dir))
+    logging.info("Transformation Phase completed")
     logging.info("Starting Loading Phase")
     loader = DuckDataLoader(db_path=config.db.duckdb_path, data_dir=str(clean_data_dir))
     try:

@@ -27,7 +27,7 @@ class ETLTransformer:
         batch['tasa_efectiva_promedio'] = pd.to_numeric(batch['tasa_efectiva_promedio'], errors='coerce', downcast='float')
         batch['margen_adicional_a_la'] = pd.to_numeric(batch['margen_adicional_a_la'], errors='coerce', downcast='float')
         batch['montos_desembolsados'] = pd.to_numeric(batch['montos_desembolsados'], errors='coerce', downcast='float')
-        batch['fecha_corte'] = pd.to_datetime(batch['fecha_corte'], errors='coerce', format='%Y-%m-%d')
+        batch['fecha_corte'] = pd.to_datetime(batch['fecha_corte'], errors='coerce')
         categoricas_simples = [
             'tipo_de_persona',
             'sexo',
